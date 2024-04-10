@@ -1,0 +1,83 @@
+<div class="popup" [ngClass]="{ active: isPopupOpen }">
+  <div class="popup-content">
+    <!-- <span class="close" (click)="onClosePopup()">&times;</span> -->
+    <img
+      [src]="selectedPokemon?.sprites?.other?.dream_world?.front_default"
+      [style.background]="selectedPokemon?.backgroundColor"
+    />
+
+    <h2 class="popupname">
+      <span>{{ selectedPokemon?.name }}</span
+      >|0{{ selectedPokemon?.id }}
+    </h2>
+    <span class="close" (click)="onClosePopup()">&times;</span>
+    <p class="popupparagraph">{{ pokemonDetails }}</p>
+  </div>
+
+  <ul class="characters-property">
+    <div class="characters">
+      <li>Height: {{ selectedPokemon?.height }}</li>
+      <li>Weight: {{ selectedPokemon?.weight }}</li>
+      <li>Genders: Female/Male{{ selectedPokemon?.Genders }}</li>
+      <li>
+        Egg Groups:
+        <span style="text-transform: capitalize">{{ pokemonEggGroup }}</span>
+      </li>
+      <li *ngIf="selectedPokemon?.abilities">
+        Abilities:
+        <ul>
+          <li *ngFor="let ability of selectedPokemon.abilities">
+            {{ ability?.ability?.name }}
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="selectedPokemon?.types">
+        Types:
+
+        <span
+          style="text-transform: capitalize"
+          *ngFor="let type of selectedPokemon.types"
+          ><button>{{ type?.type?.name }}</button>,</span
+        >
+      </li>
+      <li>Weak Against:</li>
+    </div>
+  </ul>
+
+  <div class="stats">
+    <label>Stats</label>
+    <ul class="stats-element">
+      <li>HP: {{ getBaseStat("hp") }}</li>
+      <li>Attack: {{ getBaseStat("attack") }}</li>
+      <li>Defense: {{ getBaseStat("defense") }}</li>
+      <li>Speed: {{ getBaseStat("speed") }}</li>
+      <li>Sp.Attack: {{ getBaseStat("special-attack") }}</li>
+      <li>Sp.Def: {{ getBaseStat("special-defense") }}</li>
+    </ul>
+  </div>
+
+  <div class="evolutionChain">
+    <label>Evolution Chain</label>
+    <div class="evolutionList">
+      <div *ngFor="let names of allNames; let i = index">
+        <p>{{ i + 1 }}.{{ names }}</p>
+        <ul style="list-style: none">
+          <li *ngFor="let data of fetchEvolutionData">
+            <ng-container
+              *ngIf="data.dataName === names && data.dataName.trim() !== ''"
+            >
+              <li>
+                <img
+                  [src]="data.dataImage"
+                  alt="data.dataName"
+                  [style.background]="data.dataBackgroundColor"
+                /></li
+            ></ng-container>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- {{ parentToChild.fectAllData.information }} -->

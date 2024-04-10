@@ -1,0 +1,148 @@
+.popup
+{
+    display: none;
+    position: absolute;
+    /* transform: translate(-50%,-50%); */
+     top: 5%;
+    left: 15%; 
+    background-color:#DEEDED;
+    border: 1px solid white;
+    height: 900px;
+    width: 900px;
+    z-index: 1000;
+}
+.popup.active
+{
+     display: block;
+}
+
+ .popup-content
+{
+    display: grid;
+     /* grid-template-columns: auto; 
+    text-align: center;
+    margin: 10px;
+    height: 220px;
+    width: 180px;
+    border-radius: 3%;   */
+}
+
+.close
+{
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.popupname
+{
+    font-weight: bold;
+    text-transform: capitalize;
+    position: relative;
+    left: 200px;
+    bottom: 240px;
+}
+img
+{
+    height: 180px;
+    width: 160px;
+    /* margin-right: 50px;
+    margin-left: 20px; */
+    margin-top: 10px;
+    border: 2px dashed black;
+    border-radius: 3%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.popupparagraph {
+    position: relative;
+    left:200px;
+    bottom: 270px;
+    display: flexbox;
+    border: 1px solid #333333;
+    width: 650px;
+    height: 180px;
+    overflow: hidden;
+    font-family:'Times New Roman', Times, serif;
+    text-overflow: ellipsis;
+  }
+
+.characters-property
+  {
+    /* display: grid;
+    grid-template-columns: auto auto auto auto;
+    top: 300px; */
+    color: black;
+  }
+
+.characters
+  {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid black;
+    width: 850px;
+    position: absolute;
+    top: 230px; 
+ }
+
+ .stats{
+  border: 1px solid black;
+  width: 850px;
+  position: absolute;
+  top: 320px;
+  left: 40px;
+ }
+
+ .stats-element
+ {
+  display: grid;
+  grid-template-columns: auto auto;
+  
+ }
+
+ .evolutionChain{
+  border: 1px solid black;
+  position: relative;
+  bottom: 60px;
+  width: 850px;
+  left: 40px;
+
+ }
+
+ .evolutionList
+ {
+  display: grid;
+  grid-template-columns:repeat(3, 1fr);
+  
+ }
+  
+/* new 
+.popup-content {
+  display: grid;
+  grid-template-columns: auto auto;
+  text-align: center;
+  margin: 10px;
+}
+
+.popupname {
+  grid-column: 1 / span 2;   font-weight: bold;
+  text-transform: capitalize;
+}
+
+.popupparagraph {
+  grid-column: 1 / span 2; 
+}
+
+img {
+  grid-column: 2;   height: 180px;
+  width: 160px;
+  margin-top: 10px;
+  border: 2px dashed black;
+  border-radius: 3%;
+  padding: 10px;
+  margin: 10px;
+}
+
+*/

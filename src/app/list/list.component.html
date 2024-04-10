@@ -1,0 +1,29 @@
+<div class="MainContainer">
+  <p>list works!</p>
+  <div class="header">
+    <header>Search by</header>
+    <input type="text" placeholder="Name or Number" name="search" />
+    <button type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+
+  <div class="cards-container">
+    <app-cards
+      *ngFor="let pokemon of pokemonDetails"
+      [hero]="pokemon"
+      [backgroundColor]="pokemon.backgroundColor"
+      [pokemonDetails]="pokemonDetails"
+      (openPopup)="openPopup($event)"
+    ></app-cards>
+    <app-popup
+      [fetchEvolutionData]="data"
+      [selectedPokemon]="selectedPokemon"
+      (closePopup)="closePopup()"
+      [isPopupOpen]="isPopupOpen"
+    ></app-popup>
+  </div>
+</div>
+
+<!--*ngIf="isPopupOpen"
+-->

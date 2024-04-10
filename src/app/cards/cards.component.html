@@ -1,0 +1,16 @@
+<div class="cards-container">
+  <div
+    (click)="onCardClick(hero)"
+    class="cards-items"
+    [style.background]="backgroundColor"
+  >
+    <img
+      src="{{ hero?.sprites?.other?.dream_world?.front_default }}"
+      alt="pokemon-image"
+    />
+    <ul class="name-id">
+      <li class="name">{{ hero.name }}</li>
+      <li class="id">0{{ hero.id }}</li>
+    </ul>
+  </div>
+</div>
