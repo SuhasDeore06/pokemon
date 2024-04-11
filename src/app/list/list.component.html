@@ -1,5 +1,6 @@
 <div class="MainContainer">
   <p>list works!</p>
+
   <div class="header">
     <header>Search by</header>
     <input type="text" placeholder="Name or Number" name="search" />
@@ -10,7 +11,7 @@
 
   <div class="cards-container">
     <app-cards
-      *ngFor="let pokemon of pokemonDetails"
+      *ngFor="let pokemon of getPokemonForPage(currentPage)"
       [hero]="pokemon"
       [backgroundColor]="pokemon.backgroundColor"
       [pokemonDetails]="pokemonDetails"
@@ -22,6 +23,34 @@
       (closePopup)="closePopup()"
       [isPopupOpen]="isPopupOpen"
     ></app-popup>
+  </div>
+
+  <div>
+    <nav class="Page_navigation_example">
+      <button
+        class="page-link"
+        href="#"
+        (click)="paginationFunction(0)"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+      <!-- </li> -->
+      &nbsp;&nbsp;
+
+      <a class="page-link" href="#">1</a>
+      <!-- </li> -->
+      &nbsp;&nbsp;
+
+      <button
+        class="page-link"
+        href="#"
+        (click)="paginationFunction(1)"
+        [disabled]="currentPage === totalPages()"
+      >
+        Next
+      </button>
+    </nav>
   </div>
 </div>
 

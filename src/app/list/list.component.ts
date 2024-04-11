@@ -52,6 +52,8 @@ export class ListComponent implements OnInit {
     dataImage: any;
   }[] = [];
   data: any;
+  currentPage: number = 1;
+  pageSize: number = 10;
 
   constructor(private http: HttpClient) {}
 
@@ -59,10 +61,15 @@ export class ListComponent implements OnInit {
     this.fetchAllData();
   }
 
+  totalPages() {
+    let pages = Math.ceil(this.pokemonDetails.length / this.pageSize);
+    return pages;
+  }
+
   fetchAllData() {
     //for Name
     this.http
-      .get('https://pokeapi.co/api/v2/pokemon?limit=50')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=36')
       .subscribe((response: any) => {
         console.log(response);
         this.pokemonDetails = response.results;
@@ -77,6 +84,9 @@ export class ListComponent implements OnInit {
         //for images. forkjoin is used to fetch data of multiple url's.
         forkJoin(results).subscribe((response: any[]) => {
           this.pokemonDetails = response;
+          this.pokemonDetails.forEach((entry: any) => {
+            entry.response;
+          });
           console.log(response, '3rd data');
 
           this.precalculateColors();
@@ -90,15 +100,12 @@ export class ListComponent implements OnInit {
             });
           });
 
-          // this.pokemonDetails.forEach((entry: any) => {
-          //   this.evolutionChain.push(entry);
-          // });
-
           //console.log(this.evolutionChain, 'evchain');
           this.data = this.evolutionChain;
           console.log(this.data, 'evchain');
         });
       });
+    console.log(this.fetchAllData, 'fecthdata');
   }
 
   precalculateColors(): void {
@@ -152,5 +159,19 @@ export class ListComponent implements OnInit {
 
   closePopup() {
     this.isPopupOpen = false;
+  }
+
+  paginationFunction(value: any) {
+    if (value === 0 && this.currentPage > 1) {
+      this.currentPage--;
+    } else if (value === 1 && this.currentPage < this.totalPages()) {
+      this.currentPage++;
+    }
+  }
+
+  getPokemonForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.pokemonDetails.slice(startIndex, endIndex);
   }
 }
