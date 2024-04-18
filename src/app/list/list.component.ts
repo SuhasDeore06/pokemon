@@ -79,19 +79,23 @@ export class ListComponent implements OnInit {
     const newPokemon = {
       name: templateFormData.name,
       url: '',
-      id: this.pokemonDetails.unshift(templateFormData.name),
+      id: this.pokemonDetails.length + 1,
       image: '',
+      height: templateFormData.height,
+      weight: templateFormData.weight,
+      abilities: [{ ability: { name: templateFormData.abilities } }],
+      weakAgainst: templateFormData.weakAgainst,
       species: {
         url: {
           flavor_text_entries: {
             flavor_text: templateFormData.para,
           },
           egg_groups: {
-            name: '',
+            name: templateFormData.eggGroup,
           },
         },
       },
-      types: [],
+      types: [{ type: { name: templateFormData.type } }],
       sprites: {
         other: {
           dream_world: {
@@ -99,10 +103,18 @@ export class ListComponent implements OnInit {
           },
         },
       },
-      backgroundColor: `#E2E2A0`,
+      backgroundColor: `linear-gradient(to bottom, #CBD5ED,#FCC1B0)`,
+      stats: {
+        0: { stat: { name: templateFormData.hp } },
+        1: { stat: { name: templateFormData.attack } },
+        2: { stat: { name: templateFormData.defence } },
+        3: { stat: { name: templateFormData.speed } },
+        4: { stat: { name: templateFormData.spAttack } },
+        5: { stat: { name: templateFormData.spDef } },
+      },
     };
 
-    this.pokemonDetails.push(newPokemon);
+    this.pokemonDetails.unshift(newPokemon);
 
     console.log(this.pokemonDetails, 'pokemonDetails array');
   }
@@ -144,6 +156,11 @@ export class ListComponent implements OnInit {
         },
       },
       backgroundColor: `#C7D7DF`,
+      stats: {
+        stat: {
+          name: '',
+        },
+      },
     };
 
     this.pokemonDetails.push(newPokemonList);
@@ -260,4 +277,7 @@ export class ListComponent implements OnInit {
     const endIndex = startIndex + this.pageSize;
     return this.pokemonDetails.slice(startIndex, endIndex);
   }
+}
+function getExtraStats() {
+  throw new Error('Function not implemented.');
 }

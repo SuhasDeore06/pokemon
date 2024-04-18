@@ -30,8 +30,6 @@ export class PopupComponent implements OnInit {
   spritesElement: any[] = [];
   evolutionChain: any;
   attempt: any;
-  //allNames: string[] = [];
-  //pokemonEvolutionChain: any;
 
   constructor(private http: HttpClient) {}
 
@@ -108,7 +106,7 @@ export class PopupComponent implements OnInit {
         this.pokemonEggGroup = response.egg_groups.map(
           (entry: any) => entry.name
         );
-        console.log(this.pokemonEggGroup);
+        console.log(this.pokemonEggGroup, 'egg-group-value');
       }
 
       if (response && response.evolution_chain) {

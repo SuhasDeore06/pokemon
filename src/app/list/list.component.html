@@ -31,7 +31,6 @@
       (closePopup)="closePopup()"
       [isPopupOpen]="isPopupOpen"
     ></app-popup>
-    <app-template></app-template>
   </div>
 
   <div>
@@ -67,14 +66,94 @@
     <div class="template-form">
       Template-Driven-Form
       <form #basicForm="ngForm" (ngSubmit)="getTemplateData(basicForm.value)">
-        <input type="text" ngModel placeholder="Enter Name" name="name" />
+        <input
+          type="text"
+          ngModel
+          placeholder="Enter Name"
+          name="name"
+          required
+        />
         <br /><br />
-        <input type="text" ngModel placeholder="Enter paragraph" name="para" />
+        <input
+          type="text"
+          ngModel
+          placeholder="Enter paragraph"
+          name="para"
+          required
+        />
         <br /><br />
-        <button>Submit</button>
+        <div class="charactersTemplate">
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value height"
+            name="height"
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value weight"
+            name="weight"
+          />
+          <input type="text" ngModel placeholder="Enter gender" name="gender" />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter egg group"
+            name="eggGroup"
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter abilities"
+            name="abilities"
+          />
+          <input type="text" ngModel placeholder="Enter type" name="type" />
+          <input
+            type="text"
+            ngModel
+            placeholder="Weak Against "
+            name="weakAgainst"
+          />
+        </div>
+        <br />
+        <div class="statsTemplate">
+          <input type="text" ngModel placeholder="Enter value HP" name="hp" />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value Attack"
+            name="attack"
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value Defence"
+            name="defence"
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value speed"
+            name="speed"
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value sp.Attack"
+            name="spAttack"
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value sp.Def"
+            name="spDef"
+          />
+        </div>
+        <button [disabled]="basicForm.invalid">Submit</button>
       </form>
     </div>
-    <div class="reactive-form">
+    <!-- <div class="reactive-form">
       Reactive-form
       <form [formGroup]="entryForm" (ngSubmit)="entryData()">
         <input
@@ -84,15 +163,94 @@
           formControlName="user"
         />
         <br /><br />
-        <!-- <input
+        <input
           type="text"
-          placeholder="Enter id"
-          name="identity"
-          formControlName="identity"
+          ngModel
+          placeholder="Enter paragraph"
+          name="para"
+          required
         />
-        <br /><br /> -->
+        <br /><br />
+        <div class="charactersReactive">
+          <input type="text" ngModel placeholder="Enter height" name="hp" />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value weight"
+            name="weight"
+            required
+          />
+          <input type="text" ngModel placeholder="Enter gender" name="gender" />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter egg group"
+            name="egg-group"
+            required
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter abilities"
+            name="abilities"
+            required
+          />
+          <input type="text" ngModel placeholder="Enter type" name="type" />
+          <input
+            type="text"
+            ngModel
+            placeholder="Weak Against "
+            name="weak-against"
+            required
+          />
+        </div>
+        <br />
+        <div class="statsReactive">
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value HP"
+            name="hp"
+            required=""
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value Attack"
+            name="attack"
+            required=""
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value Defence"
+            name="defence"
+            required=""
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value speed"
+            name="speed"
+            required=""
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value sp.Attack"
+            name="sp-attack"
+            required=""
+          />
+          <input
+            type="text"
+            ngModel
+            placeholder="Enter value sp.Def"
+            name="sp-def"
+            required=""
+          />
+        </div>
         <button>Submit</button>
       </form>
-    </div>
+    </div> -->
   </div>
 </div>
