@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -9,11 +10,10 @@ import { forkJoin } from 'rxjs';
 })
 export class ListComponent implements OnInit {
   pokemonDetails: {
-    name: string;
+    name: any;
     url: any;
     id: number;
     image: any;
-    //held_items: { id: number };
     species: {
       url: {
         flavor_text_entries: {
@@ -54,6 +54,12 @@ export class ListComponent implements OnInit {
   data: any;
   currentPage: number = 1;
   pageSize: number = 10;
+  isTemplatePopupOpen: any;
+  router: any;
+  selectdButton: any;
+  isNewPopup: boolean = false;
+  templateArray: any[] = [];
+  reactiveForm: FormGroup | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -64,6 +70,85 @@ export class ListComponent implements OnInit {
   totalPages() {
     let pages = Math.ceil(this.pokemonDetails.length / this.pageSize);
     return pages;
+  }
+
+  //template driven from
+  getTemplateData(templateFormData: any): any {
+    console.log(templateFormData, 'formdata');
+
+    const newPokemon = {
+      name: templateFormData.name,
+      url: '',
+      id: this.pokemonDetails.unshift(templateFormData.name),
+      image: '',
+      species: {
+        url: {
+          flavor_text_entries: {
+            flavor_text: templateFormData.para,
+          },
+          egg_groups: {
+            name: '',
+          },
+        },
+      },
+      types: [],
+      sprites: {
+        other: {
+          dream_world: {
+            front_default: 'assets/images/hattori.jpg',
+          },
+        },
+      },
+      backgroundColor: `#E2E2A0`,
+    };
+
+    this.pokemonDetails.push(newPokemon);
+
+    console.log(this.pokemonDetails, 'pokemonDetails array');
+  }
+
+  //reactive form
+  entryForm = new FormGroup({
+    user: new FormControl(''),
+    identity: new FormControl(''),
+  });
+
+  submittedData: any[] = [];
+
+  entryData() {
+    const formData = this.entryForm.value;
+    this.submittedData.push(formData);
+    console.log(this.submittedData, 'list');
+
+    const newPokemonList = {
+      name: formData.user,
+      url: '',
+      id: this.pokemonDetails.length + 1,
+      image: 'assets/image/hattori.jpg',
+      species: {
+        url: {
+          flavor_text_entries: {
+            flavor_text: '',
+          },
+          egg_groups: {
+            name: '',
+          },
+        },
+      },
+      types: [],
+      sprites: {
+        other: {
+          dream_world: {
+            front_default: 'assets/images/dorarmon.jpg',
+          },
+        },
+      },
+      backgroundColor: `#C7D7DF`,
+    };
+
+    this.pokemonDetails.push(newPokemonList);
+    console.log(this.pokemonDetails, 'new-details');
+    console.log(newPokemonList, 'newPokemonList');
   }
 
   fetchAllData() {
@@ -154,6 +239,7 @@ export class ListComponent implements OnInit {
     // };
     //openPopup(pokemon: any, event: MouseEvent)
     this.isPopupOpen = true;
+    console.log(this.selectedPokemon, 'this.selectedPokemon');
     console.log(this.selectedPokemon.types, 'hello');
   }
 

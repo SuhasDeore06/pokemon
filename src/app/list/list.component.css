@@ -2,6 +2,10 @@
 {
     background-color:#DEEDED;
 }
+.templateForm
+{
+    margin-left: 35px;
+}
 .cards-container
 {
     display: grid;
@@ -42,3 +46,43 @@
     cursor:pointer; */
     
 }
+
+/* .new-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .new-popup.active {
+    display: flex;
+  }
+  
+  .new-popup-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .open-popup-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  
+  
+  .forms
+  {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 10px;
+  }

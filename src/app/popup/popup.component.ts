@@ -15,7 +15,6 @@ import {
 })
 export class PopupComponent implements OnInit {
   @Input() openPage: any;
-
   @Input() selectedPokemon: any;
   @Input() isPopupOpen: boolean = false;
   @Output() closePopup: EventEmitter<any> = new EventEmitter();
@@ -24,64 +23,51 @@ export class PopupComponent implements OnInit {
   @Input() fetchEvolutionData: any;
 
   backgroundColor: string = '';
-  pokemonDetails: {
-    id: number;
-    image: any;
-    url: any;
-    height: number;
-    weight: any;
-    sprites: {
-      other: {
-        dream_world: {
-          front_default: any;
-        };
-      };
-    };
-    abilities: {
-      ability: {
-        name: any;
-      };
-    };
-    types: {
-      type: {
-        name: any;
-      };
-    };
-    stats: {
-      base_stat: any;
-      stat: {
-        name: any;
-      };
-    };
-    species: {
-      url: any;
-      name: any;
-    };
-    chain: {
-      species: {
-        name: string;
-      };
-    };
-  }[] = [];
+  pokemonDetails: string = '';
   mainTask: any;
   subTask: any;
   pokemonEggGroup: any;
   spritesElement: any[] = [];
   evolutionChain: any;
-  i: any;
+  attempt: any;
   //allNames: string[] = [];
   //pokemonEvolutionChain: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (changes.selectedPokemon && !changes.selectedPokemon.firstChange) {
+  //     console.log('selectedPokemon', this.selectedPokemon);
+  //     const newValue = changes.selectedPokemon.currentValue;
+  //     if (newValue) {
+  //       console.log(newValue, 'newValue');
+  //       let speciesUrl = newValue.species.url;
+  //       if (speciesUrl) {
+  //         console.log(speciesUrl, 'speciesURL');
+  //         this.fetchSpeciesDetails(speciesUrl);
+  //       }
+  //     }
+  //   }
+  // }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.selectedPokemon && !changes.selectedPokemon.firstChange) {
+      console.log('selectedPokemon', this.selectedPokemon);
       const newValue = changes.selectedPokemon.currentValue;
-      if (newValue) {
-        const speciesUrl = newValue.species.url;
-        this.fetchSpeciesDetails(speciesUrl);
-        console.log(speciesUrl, 'For-evolution');
+      if (newValue && typeof newValue.species.url === typeof '') {
+        console.log(newValue, 'newValue');
+        let speciesUrl = newValue.species.url;
+        if (speciesUrl) {
+          console.log(speciesUrl, 'speciesURL');
+          this.fetchSpeciesDetails(speciesUrl);
+        }
+      } else {
+        this.pokemonDetails =
+          newValue.species.url.flavor_text_entries.flavor_text;
+        console.log(
+          newValue.species.url.flavor_text_entries.flavor_text,
+          'para-val'
+        );
       }
     }
   }
@@ -91,6 +77,16 @@ export class PopupComponent implements OnInit {
   }
 
   fetchSpeciesDetails(url: any) {
+    // if (url === '') {
+    //   this.selectedPokemon.species.url.flavor_text_entries.flavor_text;
+    //   console.log(
+    //     this.selectedPokemon.species.url.flavor_text_entries.flavor_text,
+    //     'testing'
+    //   );
+
+    //   return;
+    // }
+    console.log('url', url);
     this.http.get(url).subscribe((response: any) => {
       console.log(response.egg_groups, 'trial');
       console.log(response.evolution_chain, 'Main - evoultion - chain');
@@ -101,9 +97,10 @@ export class PopupComponent implements OnInit {
         response.flavor_text_entries &&
         response.flavor_text_entries.length > 0
       ) {
-        this.pokemonDetails = response.flavor_text_entries
+        const pokemonDetails: string[] = response.flavor_text_entries
           .filter((entry: any) => entry.language.name === 'en')
           .map((entry: any) => entry.flavor_text);
+        this.pokemonDetails = pokemonDetails.toString();
         console.log(this.pokemonDetails);
       }
 

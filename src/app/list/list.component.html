@@ -1,13 +1,21 @@
 <div class="MainContainer">
   <p>list works!</p>
+  <!-- <div class="new-popup" [ngClass]="{ active: isNewPopup }">
+    <div class="new-popup-container">
+      <button class="open-popup-button" (click)="openNewPopUp()">
+        Template-Driven-Form
+      </button>
+    </div>
+  </div> -->
 
-  <div class="header">
+  <br /><br />
+  <!-- <div class="header">
     <header>Search by</header>
     <input type="text" placeholder="Name or Number" name="search" />
     <button type="submit">
       <i class="fa fa-search"></i>
     </button>
-  </div>
+  </div> -->
 
   <div class="cards-container">
     <app-cards
@@ -23,6 +31,7 @@
       (closePopup)="closePopup()"
       [isPopupOpen]="isPopupOpen"
     ></app-popup>
+    <app-template></app-template>
   </div>
 
   <div>
@@ -35,11 +44,11 @@
       >
         Previous
       </button>
-      <!-- </li> -->
+
       &nbsp;&nbsp;
 
       <a class="page-link" href="#">1</a>
-      <!-- </li> -->
+
       &nbsp;&nbsp;
 
       <button
@@ -52,7 +61,38 @@
       </button>
     </nav>
   </div>
-</div>
 
-<!--*ngIf="isPopupOpen"
--->
+  <br /><br />
+  <div class="forms">
+    <div class="template-form">
+      Template-Driven-Form
+      <form #basicForm="ngForm" (ngSubmit)="getTemplateData(basicForm.value)">
+        <input type="text" ngModel placeholder="Enter Name" name="name" />
+        <br /><br />
+        <input type="text" ngModel placeholder="Enter paragraph" name="para" />
+        <br /><br />
+        <button>Submit</button>
+      </form>
+    </div>
+    <div class="reactive-form">
+      Reactive-form
+      <form [formGroup]="entryForm" (ngSubmit)="entryData()">
+        <input
+          type="text"
+          placeholder="Enter Name"
+          name="user"
+          formControlName="user"
+        />
+        <br /><br />
+        <!-- <input
+          type="text"
+          placeholder="Enter id"
+          name="identity"
+          formControlName="identity"
+        />
+        <br /><br /> -->
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
