@@ -153,6 +153,92 @@
         <button [disabled]="basicForm.invalid">Submit</button>
       </form>
     </div>
+    <div class="reactive-form">
+      Reactive-Form
+      <form [formGroup]="reactivePokemonForm" (ngSubmit)="reactiveFormLogin()">
+        <input
+          type="text"
+          placeholder="Enter Name"
+          name="name"
+          formControlName="name"
+        />
+        <br /><br />
+        <input
+          type="text"
+          placeholder="Enter paragraph"
+          name="paragraph"
+          formControlName="paragraph"
+        />
+        <br /><br />
+        <div class="charactersReactive">
+          <input
+            type="text"
+            placeholder="Enter height"
+            formControlName="height"
+          />
+          <input
+            type="text"
+            placeholder="Enter weight"
+            formControlName="weight"
+          />
+          <input
+            type="text"
+            placeholder="Enter gender"
+            formControlName="gender"
+          />
+          <input
+            type="text"
+            placeholder="Enter egg group"
+            formControlName="eggGroup"
+          />
+          <input
+            type="text"
+            placeholder="Enter abilities"
+            formControlName="abilities"
+          />
+          <input type="text" placeholder="Enter types" formControlName="type" />
+          <input
+            type="text"
+            placeholder="Weak Against"
+            formControlName="weakAgainst"
+          />
+        </div>
+        <br />
+        <div class="statsReactive">
+          <input
+            type="text"
+            placeholder="Enter value HP"
+            formControlName="hp"
+          />
+          <input
+            type="text"
+            placeholder="Enter value attack"
+            formControlName="attack"
+          />
+          <input
+            type="text"
+            placeholder="Enter value Defence"
+            formControlName="defence"
+          />
+          <input
+            type="text"
+            placeholder="Enter value speed"
+            formControlName="speed"
+          />
+          <input
+            type="text"
+            placeholder="Enter value sp.Attack"
+            formControlName="spAttack"
+          />
+          <input
+            type="text"
+            placeholder="Enter value sp.Def"
+            formControlName="spDef"
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
     <!-- <div class="reactive-form">
       Reactive-form
       <form [formGroup]="entryForm" (ngSubmit)="entryData()">

@@ -120,53 +120,84 @@ export class ListComponent implements OnInit {
   }
 
   //reactive form
-  entryForm = new FormGroup({
-    user: new FormControl(''),
-    identity: new FormControl(''),
+  reactivePokemonForm = new FormGroup({
+    name: new FormControl(''),
+    // sprites: new FormGroup({
+    //   other: new FormGroup({
+    //     dream_world: new FormGroup({
+    //       front_default: new FormControl('assets/images/dorarmon.jpg'),
+    //     }),
+    //   }),
+    // }),
+    paragraph: new FormControl(''),
+    height: new FormControl(''),
+    weight: new FormControl(''),
+    gender: new FormControl(''),
+    eggGroup: new FormControl(''),
+    abilities: new FormControl(''),
+    weakAgainst: new FormControl(''),
+    hp: new FormControl(''),
+    attack: new FormControl(''),
+    defence: new FormControl(''),
+    speed: new FormControl(''),
+    spAttack: new FormControl(''),
+    spDef: new FormControl(''),
   });
 
   submittedData: any[] = [];
 
-  entryData() {
-    const formData = this.entryForm.value;
-    this.submittedData.push(formData);
-    console.log(this.submittedData, 'list');
-
-    const newPokemonList = {
-      name: formData.user,
-      url: '',
-      id: this.pokemonDetails.length + 1,
-      image: 'assets/image/hattori.jpg',
-      species: {
-        url: {
-          flavor_text_entries: {
-            flavor_text: '',
-          },
-          egg_groups: {
-            name: '',
-          },
-        },
-      },
-      types: [],
-      sprites: {
-        other: {
-          dream_world: {
-            front_default: 'assets/images/dorarmon.jpg',
-          },
-        },
-      },
-      backgroundColor: `#C7D7DF`,
-      stats: {
-        stat: {
-          name: '',
-        },
-      },
-    };
-
-    this.pokemonDetails.push(newPokemonList);
-    console.log(this.pokemonDetails, 'new-details');
-    console.log(newPokemonList, 'newPokemonList');
+  reactiveFormLogin() {
+    console.log(this.reactivePokemonForm.value);
+    this.pokemonDetails.unshift(this.reactiveForm?.value);
   }
+
+  // entryForm = new FormGroup({
+  //   user: new FormControl(''),
+  //   identity: new FormControl(''),
+  // });
+
+  // submittedData: any[] = [];
+
+  // entryData() {
+  //   const formData = this.entryForm.value;
+  //   this.submittedData.push(formData);
+  //   console.log(this.submittedData, 'list');
+
+  // const newPokemonList = {
+  //   name: formData.user,
+  //   url: '',
+  //   id: this.pokemonDetails.length + 1,
+  //   image: 'assets/image/hattori.jpg',
+  //   species: {
+  //     url: {
+  //       flavor_text_entries: {
+  //         flavor_text: '',
+  //       },
+  //       egg_groups: {
+  //         name: '',
+  //       },
+  //     },
+  //   },
+  //   types: [],
+  //   sprites: {
+  //     other: {
+  //       dream_world: {
+  //         front_default: 'assets/images/dorarmon.jpg',
+  //       },
+  //     },
+  //   },
+  //   backgroundColor: `#C7D7DF`,
+  //   stats: {
+  //     stat: {
+  //       name: '',
+  //     },
+  //   },
+  // };
+
+  // this.pokemonDetails.push(newPokemonList);
+  // console.log(this.pokemonDetails, 'new-details');
+  // console.log(newPokemonList, 'newPokemonList');
+  // }
 
   fetchAllData() {
     //for Name
@@ -277,7 +308,4 @@ export class ListComponent implements OnInit {
     const endIndex = startIndex + this.pageSize;
     return this.pokemonDetails.slice(startIndex, endIndex);
   }
-}
-function getExtraStats() {
-  throw new Error('Function not implemented.');
 }
